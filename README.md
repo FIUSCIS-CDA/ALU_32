@@ -27,17 +27,18 @@ Result |     32
        Ainvert, Binvert, CarryIn, Op1, Op0.  The following operations are sup-
        ported:
 
-Shift | Ainvert | Binvert | CarryIn | Op2 | Op1 | Op0 |  Result  
-------|---------|---------|---------|-----|-----|-----|---------
-  0   |    0    |    0    |    0    |  0  |  0  |  0  |   A&B
-  0   |    0    |    0    |    0    |  0  |  0  |  1  |   A|B
-  0   |    0    |    0    |    0    |  0  |  1  |  0  |   A+B
-  0   |    0    |    1    |    1    |  0  |  1  |  0  |   A-B
-  0   |    0    |    1    |    1    |  0  |  1  |  1  |   A<B
-  0   |    1    |    1    |    0    |  0  |  0  |  1  |   !(A&B)
-  0   |    1    |    1    |    0    |  0  |  0  |  0  |   !(A|B)
-  0   |    0    |    0    |    0    |  1  |  0  |  0  |   A*B
-  1   |    X    |    X    |    X    |  X  |  X  |  X  |   B<<H
+ GOp1 |   GOp0  | Ainvert | Binvert | CarryIn | Op1 | Op0 |  Result  
+------|---------|---------|---------|---------|-----|-----|---------
+  0   |    0    |    0    |    0    |    0    |  0  |  0  |   A&B
+  0   |    0    |    0    |    0    |    0    |  0  |  1  |   A|B
+  0   |    0    |    0    |    0    |    0    |  1  |  0  |   A+B
+  0   |    0    |    0    |    1    |    1    |  1  |  0  |   A-B
+  0   |    0    |    0    |    1    |    1    |  1  |  1  |   A<B
+  0   |    0    |    1    |    1    |    0    |  0  |  1  |   !(A&B)
+  0   |    0    |    1    |    1    |    0    |  0  |  0  |   !(A|B)
+  0   |    1    |    X    |    X    |    X    |  X  |  X  |   A*B
+  1   |    0    |    X    |    X    |    X    |  X  |  X  |   B<<H
+  1   |    1    |    X    |    X    |    X    |  X  |  X  |   log2(A)
 
 Output Zero is 1 if the result is zero (used to check if A == B with a -).
 Output Overflow is 1 if the result of A op B cannot be stored in 32 bits.
