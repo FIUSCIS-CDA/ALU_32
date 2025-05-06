@@ -15,15 +15,15 @@
 
 // PROGRAM		"Quartus Prime"
 // VERSION		"Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition"
-// CREATED		"Tue Aug 15 13:49:33 2023"
+// CREATED		"Tue May 06 10:24:26 2025"
 
 module ALU_32(
 	A,
 	alu_op,
 	B,
 	H,
-	Zero,
 	Overflow,
+	Zero,
 	Result
 );
 
@@ -32,8 +32,8 @@ input wire	[31:0] A;
 input wire	[6:0] alu_op;
 input wire	[31:0] B;
 input wire	[4:0] H;
-output wire	Zero;
 output wire	Overflow;
+output wire	Zero;
 output wire	[31:0] Result;
 
 wire	Carry0To1;
@@ -102,23 +102,25 @@ wire	LessThanResult;
 wire	lower12bitsZero;
 wire	middle12bitsZero;
 wire	[63:0] multout;
+wire	[1:0] myS;
 wire	[1:0] Operation;
 wire	[31:0] R;
 wire	[31:0] Result_ALTERA_SYNTHESIZED;
 wire	upper8bitsZero;
 wire	[31:0] SYNTHESIZED_WIRE_0;
 wire	[31:0] SYNTHESIZED_WIRE_1;
+wire	[4:0] SYNTHESIZED_WIRE_2;
 
 
 
 
 
 ALUBits0To30	b2v_ALU0(
-	.Ainvert(alu_op[5]),
+	.Ainvert(alu_op[4]),
 	.a(A[0]),
-	.Binvert(alu_op[4]),
+	.Binvert(alu_op[3]),
 	.b(B[0]),
-	.CarryIn(alu_op[3]),
+	.CarryIn(alu_op[2]),
 	.less(LessThanResult),
 	.Operation(Operation),
 	.Result(R[0]),
@@ -126,9 +128,9 @@ ALUBits0To30	b2v_ALU0(
 
 
 ALUBits0To30	b2v_ALU1(
-	.Ainvert(alu_op[5]),
+	.Ainvert(alu_op[4]),
 	.a(A[1]),
-	.Binvert(alu_op[4]),
+	.Binvert(alu_op[3]),
 	.b(B[1]),
 	.CarryIn(Carry0To1),
 	.less(Less1),
@@ -138,9 +140,9 @@ ALUBits0To30	b2v_ALU1(
 
 
 ALUBits0To30	b2v_ALU10(
-	.Ainvert(alu_op[5]),
+	.Ainvert(alu_op[4]),
 	.a(A[10]),
-	.Binvert(alu_op[4]),
+	.Binvert(alu_op[3]),
 	.b(B[10]),
 	.CarryIn(Carry9To10),
 	.less(Less10),
@@ -150,9 +152,9 @@ ALUBits0To30	b2v_ALU10(
 
 
 ALUBits0To30	b2v_ALU11(
-	.Ainvert(alu_op[5]),
+	.Ainvert(alu_op[4]),
 	.a(A[11]),
-	.Binvert(alu_op[4]),
+	.Binvert(alu_op[3]),
 	.b(B[11]),
 	.CarryIn(Carry10To11),
 	.less(Less11),
@@ -162,9 +164,9 @@ ALUBits0To30	b2v_ALU11(
 
 
 ALUBits0To30	b2v_ALU12(
-	.Ainvert(alu_op[5]),
+	.Ainvert(alu_op[4]),
 	.a(A[12]),
-	.Binvert(alu_op[4]),
+	.Binvert(alu_op[3]),
 	.b(B[12]),
 	.CarryIn(Carry11To12),
 	.less(Less12),
@@ -174,9 +176,9 @@ ALUBits0To30	b2v_ALU12(
 
 
 ALUBits0To30	b2v_ALU13(
-	.Ainvert(alu_op[5]),
+	.Ainvert(alu_op[4]),
 	.a(A[13]),
-	.Binvert(alu_op[4]),
+	.Binvert(alu_op[3]),
 	.b(B[13]),
 	.CarryIn(Carry12To13),
 	.less(Less13),
@@ -186,9 +188,9 @@ ALUBits0To30	b2v_ALU13(
 
 
 ALUBits0To30	b2v_ALU14(
-	.Ainvert(alu_op[5]),
+	.Ainvert(alu_op[4]),
 	.a(A[14]),
-	.Binvert(alu_op[4]),
+	.Binvert(alu_op[3]),
 	.b(B[14]),
 	.CarryIn(Carry13To14),
 	.less(Less14),
@@ -198,9 +200,9 @@ ALUBits0To30	b2v_ALU14(
 
 
 ALUBits0To30	b2v_ALU15(
-	.Ainvert(alu_op[5]),
+	.Ainvert(alu_op[4]),
 	.a(A[15]),
-	.Binvert(alu_op[4]),
+	.Binvert(alu_op[3]),
 	.b(B[15]),
 	.CarryIn(Carry14To15),
 	.less(Less15),
@@ -210,9 +212,9 @@ ALUBits0To30	b2v_ALU15(
 
 
 ALUBits0To30	b2v_ALU16(
-	.Ainvert(alu_op[5]),
+	.Ainvert(alu_op[4]),
 	.a(A[16]),
-	.Binvert(alu_op[4]),
+	.Binvert(alu_op[3]),
 	.b(B[16]),
 	.CarryIn(Carry15To16),
 	.less(Less16),
@@ -222,9 +224,9 @@ ALUBits0To30	b2v_ALU16(
 
 
 ALUBits0To30	b2v_ALU17(
-	.Ainvert(alu_op[5]),
+	.Ainvert(alu_op[4]),
 	.a(A[17]),
-	.Binvert(alu_op[4]),
+	.Binvert(alu_op[3]),
 	.b(B[17]),
 	.CarryIn(Carry16To17),
 	.less(Less17),
@@ -234,9 +236,9 @@ ALUBits0To30	b2v_ALU17(
 
 
 ALUBits0To30	b2v_ALU18(
-	.Ainvert(alu_op[5]),
+	.Ainvert(alu_op[4]),
 	.a(A[18]),
-	.Binvert(alu_op[4]),
+	.Binvert(alu_op[3]),
 	.b(B[18]),
 	.CarryIn(Carry17To18),
 	.less(Less18),
@@ -246,9 +248,9 @@ ALUBits0To30	b2v_ALU18(
 
 
 ALUBits0To30	b2v_ALU19(
-	.Ainvert(alu_op[5]),
+	.Ainvert(alu_op[4]),
 	.a(A[19]),
-	.Binvert(alu_op[4]),
+	.Binvert(alu_op[3]),
 	.b(B[19]),
 	.CarryIn(Carry18To19),
 	.less(Less19),
@@ -258,9 +260,9 @@ ALUBits0To30	b2v_ALU19(
 
 
 ALUBits0To30	b2v_ALU2(
-	.Ainvert(alu_op[5]),
+	.Ainvert(alu_op[4]),
 	.a(A[2]),
-	.Binvert(alu_op[4]),
+	.Binvert(alu_op[3]),
 	.b(B[2]),
 	.CarryIn(Carry1To2),
 	.less(Less2),
@@ -270,9 +272,9 @@ ALUBits0To30	b2v_ALU2(
 
 
 ALUBits0To30	b2v_ALU20(
-	.Ainvert(alu_op[5]),
+	.Ainvert(alu_op[4]),
 	.a(A[20]),
-	.Binvert(alu_op[4]),
+	.Binvert(alu_op[3]),
 	.b(B[20]),
 	.CarryIn(Carry19To20),
 	.less(Less20),
@@ -282,9 +284,9 @@ ALUBits0To30	b2v_ALU20(
 
 
 ALUBits0To30	b2v_ALU21(
-	.Ainvert(alu_op[5]),
+	.Ainvert(alu_op[4]),
 	.a(A[21]),
-	.Binvert(alu_op[4]),
+	.Binvert(alu_op[3]),
 	.b(B[21]),
 	.CarryIn(Carry20To21),
 	.less(Less21),
@@ -294,9 +296,9 @@ ALUBits0To30	b2v_ALU21(
 
 
 ALUBits0To30	b2v_ALU22(
-	.Ainvert(alu_op[5]),
+	.Ainvert(alu_op[4]),
 	.a(A[22]),
-	.Binvert(alu_op[4]),
+	.Binvert(alu_op[3]),
 	.b(B[22]),
 	.CarryIn(Carry21To22),
 	.less(Less22),
@@ -306,9 +308,9 @@ ALUBits0To30	b2v_ALU22(
 
 
 ALUBits0To30	b2v_ALU23(
-	.Ainvert(alu_op[5]),
+	.Ainvert(alu_op[4]),
 	.a(A[23]),
-	.Binvert(alu_op[4]),
+	.Binvert(alu_op[3]),
 	.b(B[23]),
 	.CarryIn(Carry22To23),
 	.less(Less23),
@@ -318,9 +320,9 @@ ALUBits0To30	b2v_ALU23(
 
 
 ALUBits0To30	b2v_ALU24(
-	.Ainvert(alu_op[5]),
+	.Ainvert(alu_op[4]),
 	.a(A[24]),
-	.Binvert(alu_op[4]),
+	.Binvert(alu_op[3]),
 	.b(B[24]),
 	.CarryIn(Carry23To24),
 	.less(Less24),
@@ -330,9 +332,9 @@ ALUBits0To30	b2v_ALU24(
 
 
 ALUBits0To30	b2v_ALU25(
-	.Ainvert(alu_op[5]),
+	.Ainvert(alu_op[4]),
 	.a(A[25]),
-	.Binvert(alu_op[4]),
+	.Binvert(alu_op[3]),
 	.b(B[25]),
 	.CarryIn(Carry24To25),
 	.less(Less25),
@@ -342,9 +344,9 @@ ALUBits0To30	b2v_ALU25(
 
 
 ALUBits0To30	b2v_ALU26(
-	.Ainvert(alu_op[5]),
+	.Ainvert(alu_op[4]),
 	.a(A[26]),
-	.Binvert(alu_op[4]),
+	.Binvert(alu_op[3]),
 	.b(B[26]),
 	.CarryIn(Carry25To26),
 	.less(Less26),
@@ -354,9 +356,9 @@ ALUBits0To30	b2v_ALU26(
 
 
 ALUBits0To30	b2v_ALU27(
-	.Ainvert(alu_op[5]),
+	.Ainvert(alu_op[4]),
 	.a(A[27]),
-	.Binvert(alu_op[4]),
+	.Binvert(alu_op[3]),
 	.b(B[27]),
 	.CarryIn(Carry26To27),
 	.less(Less27),
@@ -366,9 +368,9 @@ ALUBits0To30	b2v_ALU27(
 
 
 ALUBits0To30	b2v_ALU28(
-	.Ainvert(alu_op[5]),
+	.Ainvert(alu_op[4]),
 	.a(A[28]),
-	.Binvert(alu_op[4]),
+	.Binvert(alu_op[3]),
 	.b(B[28]),
 	.CarryIn(Carry27To28),
 	.less(Less28),
@@ -378,9 +380,9 @@ ALUBits0To30	b2v_ALU28(
 
 
 ALUBits0To30	b2v_ALU29(
-	.Ainvert(alu_op[5]),
+	.Ainvert(alu_op[4]),
 	.a(A[29]),
-	.Binvert(alu_op[4]),
+	.Binvert(alu_op[3]),
 	.b(B[29]),
 	.CarryIn(Carry28To29),
 	.less(Less29),
@@ -390,9 +392,9 @@ ALUBits0To30	b2v_ALU29(
 
 
 ALUBits0To30	b2v_ALU3(
-	.Ainvert(alu_op[5]),
+	.Ainvert(alu_op[4]),
 	.a(A[3]),
-	.Binvert(alu_op[4]),
+	.Binvert(alu_op[3]),
 	.b(B[3]),
 	.CarryIn(Carry2To3),
 	.less(Less3),
@@ -402,9 +404,9 @@ ALUBits0To30	b2v_ALU3(
 
 
 ALUBits0To30	b2v_ALU30(
-	.Ainvert(alu_op[5]),
+	.Ainvert(alu_op[4]),
 	.a(A[30]),
-	.Binvert(alu_op[4]),
+	.Binvert(alu_op[3]),
 	.b(B[30]),
 	.CarryIn(Carry29To30),
 	.less(Less30),
@@ -414,9 +416,9 @@ ALUBits0To30	b2v_ALU30(
 
 
 ALUBit31	b2v_ALU31(
-	.Ainvert(alu_op[5]),
+	.Ainvert(alu_op[4]),
 	.a(A[31]),
-	.Binvert(alu_op[4]),
+	.Binvert(alu_op[3]),
 	.b(B[31]),
 	.CarryIn(Carry30To31),
 	.less(Less31),
@@ -427,9 +429,9 @@ ALUBit31	b2v_ALU31(
 
 
 ALUBits0To30	b2v_ALU4(
-	.Ainvert(alu_op[5]),
+	.Ainvert(alu_op[4]),
 	.a(A[4]),
-	.Binvert(alu_op[4]),
+	.Binvert(alu_op[3]),
 	.b(B[4]),
 	.CarryIn(Carry3To4),
 	.less(Less4),
@@ -439,9 +441,9 @@ ALUBits0To30	b2v_ALU4(
 
 
 ALUBits0To30	b2v_ALU5(
-	.Ainvert(alu_op[5]),
+	.Ainvert(alu_op[4]),
 	.a(A[5]),
-	.Binvert(alu_op[4]),
+	.Binvert(alu_op[3]),
 	.b(B[5]),
 	.CarryIn(Carry4To5),
 	.less(Less5),
@@ -451,9 +453,9 @@ ALUBits0To30	b2v_ALU5(
 
 
 ALUBits0To30	b2v_ALU6(
-	.Ainvert(alu_op[5]),
+	.Ainvert(alu_op[4]),
 	.a(A[6]),
-	.Binvert(alu_op[4]),
+	.Binvert(alu_op[3]),
 	.b(B[6]),
 	.CarryIn(Carry5To6),
 	.less(Less6),
@@ -463,9 +465,9 @@ ALUBits0To30	b2v_ALU6(
 
 
 ALUBits0To30	b2v_ALU7(
-	.Ainvert(alu_op[5]),
+	.Ainvert(alu_op[4]),
 	.a(A[7]),
-	.Binvert(alu_op[4]),
+	.Binvert(alu_op[3]),
 	.b(B[7]),
 	.CarryIn(Carry6To7),
 	.less(Less7),
@@ -475,9 +477,9 @@ ALUBits0To30	b2v_ALU7(
 
 
 ALUBits0To30	b2v_ALU8(
-	.Ainvert(alu_op[5]),
+	.Ainvert(alu_op[4]),
 	.a(A[8]),
-	.Binvert(alu_op[4]),
+	.Binvert(alu_op[3]),
 	.b(B[8]),
 	.CarryIn(Carry7To8),
 	.less(Less8),
@@ -487,9 +489,9 @@ ALUBits0To30	b2v_ALU8(
 
 
 ALUBits0To30	b2v_ALU9(
-	.Ainvert(alu_op[5]),
+	.Ainvert(alu_op[4]),
 	.a(A[9]),
-	.Binvert(alu_op[4]),
+	.Binvert(alu_op[3]),
 	.b(B[9]),
 	.CarryIn(Carry8To9),
 	.less(Less9),
@@ -498,10 +500,13 @@ ALUBits0To30	b2v_ALU9(
 	.CarryOut(Carry9To10));
 
 
-SLL_32	b2v_inst(
-	.A(B),
-	.H(H),
-	.Y(SYNTHESIZED_WIRE_0));
+MUX4_32	b2v_finalMUX(
+	.A(R),
+	.B(multout[31:0]),
+	.C(SYNTHESIZED_WIRE_0),
+	.D(SYNTHESIZED_WIRE_1),
+	.S(myS),
+	.Y(Result_ALTERA_SYNTHESIZED));
 
 assign	lower12bitsZero = ~(Result_ALTERA_SYNTHESIZED[0] | Result_ALTERA_SYNTHESIZED[1] | Result_ALTERA_SYNTHESIZED[2] | Result_ALTERA_SYNTHESIZED[4] | Result_ALTERA_SYNTHESIZED[3] | Result_ALTERA_SYNTHESIZED[5] | Result_ALTERA_SYNTHESIZED[7] | Result_ALTERA_SYNTHESIZED[6] | Result_ALTERA_SYNTHESIZED[8] | Result_ALTERA_SYNTHESIZED[10] | Result_ALTERA_SYNTHESIZED[9] | Result_ALTERA_SYNTHESIZED[11]);
 
@@ -531,29 +536,9 @@ assign	upper8bitsZero = ~(Result_ALTERA_SYNTHESIZED[24] | Result_ALTERA_SYNTHESI
 
 
 
-MUX2_32	b2v_inst300(
-	.S(alu_op[6]),
-	.A(R),
-	.B(SYNTHESIZED_WIRE_0),
-	.Y(SYNTHESIZED_WIRE_1));
 
 
 
-
-
-
-
-Multiplier_32	b2v_inst36(
-	.A(A),
-	.B(B),
-	.Z(multout));
-
-
-MUX2_32	b2v_inst37(
-	.S(alu_op[2]),
-	.A(SYNTHESIZED_WIRE_1),
-	.B(multout[31:0]),
-	.Y(Result_ALTERA_SYNTHESIZED));
 
 assign	Zero = lower12bitsZero & middle12bitsZero & upper8bitsZero;
 
@@ -561,6 +546,28 @@ assign	Zero = lower12bitsZero & middle12bitsZero & upper8bitsZero;
 
 
 
+
+
+Log2_32	b2v_myLog(
+	.A(A),
+	.log2(SYNTHESIZED_WIRE_2));
+
+
+Multiplier_32	b2v_myMult(
+	.A(A),
+	.B(B),
+	.Z(multout));
+
+
+SLL_32	b2v_myShift(
+	.A(B),
+	.H(H),
+	.Y(SYNTHESIZED_WIRE_0));
+
+
+ZE5_32	b2v_myZE(
+	.A(SYNTHESIZED_WIRE_2),
+	.Y(SYNTHESIZED_WIRE_1));
 
 
 SameBit	b2v_sameBit0(
@@ -571,6 +578,16 @@ SameBit	b2v_sameBit0(
 SameBit	b2v_sameBit1(
 	.Ain(alu_op[1]),
 	.Aout(Operation[1]));
+
+
+SameBit	b2v_sameBit2(
+	.Ain(alu_op[6]),
+	.Aout(myS[1]));
+
+
+SameBit	b2v_sameBit3(
+	.Ain(alu_op[5]),
+	.Aout(myS[0]));
 
 assign	Result = Result_ALTERA_SYNTHESIZED;
 assign	Less1 = 0;
